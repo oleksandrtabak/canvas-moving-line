@@ -19,11 +19,12 @@ body {
 main {
   height: 100%;
   width: 100%;
-  /* background-color: green; */
+  display: grid;
+  place-items: center;
 }
 
 #canvas {
-  border: 2px solid orange;
+  border: 2px dashed black;
 }
 
 
