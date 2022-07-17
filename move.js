@@ -11,12 +11,11 @@ canvas.height = WIDTH
 // Керування анімацією
 let animate = false
 let lineY = 0
-const FPS = 60
+const FPS = 120
 const LINEWIDTH = 7
 const LINECOLOR = 'darkblue'
 const BGCOLOR = 'dodgerblue'
-// ЗМІНИТИ: щоб за секунду змінювалось рівно на Х пікселлів
-// const SPEED = 10  // пікселів/секунду  
+const SPEED = 250  // пікселів/секунду  
 
 // Квадрат
 ctx.fillStyle = BGCOLOR
@@ -59,7 +58,7 @@ function drawing() {
   if (lineY > HEIGHT) {
     lineY = 0
   } else {
-    lineY += 1
+    lineY += SPEED / FPS
   }
   
   // Замальовує попередню лінію
@@ -78,4 +77,3 @@ function drawing() {
   ctx.lineTo(WIDTH, lineY)
   ctx.stroke()
 }
-
