@@ -7,24 +7,23 @@ const HEIGHT = 250
 canvas.width = WIDTH
 canvas.height = WIDTH
 
-// Квадрат
-const gradient = ctx.createLinearGradient(50, 50, WIDTH - 50, HEIGHT - 50)
-gradient.addColorStop(0, '#87bfff')
-gradient.addColorStop(1, '#cdf0ff')
-
-ctx.fillStyle = gradient
-ctx.fillRect(0, 0, WIDTH, HEIGHT)
 
 // Керування анімацією
 let animate = false
 let lineY = 0
 const FPS = 60
-const LINECOLOR = 'orange'
+const LINEWIDTH = 7
+const LINECOLOR = 'darkblue'
+const BGCOLOR = 'dodgerblue'
 // ЗМІНИТИ: щоб за секунду змінювалось рівно на Х пікселлів
 // const SPEED = 10  // пікселів/секунду  
 
+// Квадрат
+ctx.fillStyle = BGCOLOR
+ctx.fillRect(0, 0, WIDTH, HEIGHT)
+
 // Лінія
-ctx.lineWidth = 3
+ctx.lineWidth = LINEWIDTH
 ctx.lineCap = "round"
 ctx.strokeStyle = LINECOLOR
 
@@ -57,25 +56,26 @@ btn.addEventListener('click', () => {
 })
 
 function drawing() {
-  if (lineY >= HEIGHT) {
+  if (lineY > HEIGHT) {
     lineY = 0
   } else {
     lineY += 1
   }
   
-  // removing previous line
-  ctx.strokeStyle = 'blue'
+  // Замальовує попередню лінію
+  ctx.lineWidth = LINEWIDTH * 2
+  ctx.strokeStyle = BGCOLOR
   ctx.beginPath()
   ctx.moveTo(0, lineY - 1)
   ctx.lineTo(WIDTH, lineY - 1)
   ctx.stroke()
 
+  // Малює нову лінію
+  ctx.lineWidth = LINEWIDTH
   ctx.strokeStyle = LINECOLOR
   ctx.beginPath()
   ctx.moveTo(0, lineY)
   ctx.lineTo(WIDTH, lineY)
   ctx.stroke()
-  
-  console.log('DRAWING')  
 }
 
